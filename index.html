@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matías Ortega — Data Analytics Portfolio</title>
+<meta name="description" content="Portfolio de análisis de datos de Matías Ortega — SQL, Power BI, Power Query, Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0E1420;
+    --surface:#141C2C;
+    --surface-alt:#1A2438;
+    --grid-line:#263149;
+    --grid-line-soft:#1D2740;
+    --text:#EAEFF7;
+    --text-muted:#93A0BC;
+    --text-dim:#5E6B87;
+    --teal:#35C7B0;
+    --teal-dim:#1E7A6C;
+    --amber:#F0A93C;
+    --rose:#E2596B;
+    --radius:10px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid-line-soft) 1px, transparent 1px) 0 0/44px 44px,
+      linear-gradient(90deg, var(--grid-line-soft) 1px, transparent 1px) 0 0/44px 44px,
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; margin:0; letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px; border-radius:4px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(10px);
+    background:rgba(14,20,32,0.82);
+    border-bottom:1px solid var(--grid-line);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:15px; color:var(--text);}
+  .logo span{color:var(--teal);}
+  nav.links{display:flex; gap:4px;}
+  nav.links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:6px;
+    transition:background .15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  nav.links a:hover{color:var(--text); background:var(--surface-alt);}
+  nav.links a .cell{color:var(--teal); margin-right:6px; opacity:.75;}
+  .nav-cta{
+    display:flex; gap:10px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter', sans-serif; font-weight:600; font-size:13.5px;
+    padding:9px 16px; border-radius:8px;
+    text-decoration:none; border:1px solid var(--grid-line);
+    transition:transform .15s ease, border-color .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--teal); color:#08201C; border-color:var(--teal);}
+  .btn-primary:hover{background:#4bd6bf;}
+  .btn-ghost{color:var(--text); background:transparent;}
+  .btn-ghost:hover{border-color:var(--teal); color:var(--teal);}
+  @media (max-width:760px){ nav.links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{padding:88px 0 56px;}
+  .hero-top{display:grid; grid-template-columns:1fr 300px; gap:48px; align-items:start; margin-bottom:52px;}
+  .id-card{
+    border:1px solid var(--grid-line); border-radius:var(--radius);
+    background:var(--surface); padding:24px; text-align:center;
+  }
+  .id-photo{
+    width:104px; height:104px; border-radius:50%; object-fit:cover;
+    border:2px solid var(--teal); box-shadow:0 0 0 5px rgba(53,199,176,0.12);
+    display:block; margin:0 auto 16px;
+  }
+  .id-name{font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:17px;}
+  .id-role{font-size:11.5px; color:var(--text-muted); margin-top:4px; margin-bottom:18px;}
+  .id-rows{border-top:1px solid var(--grid-line); padding-top:14px; text-align:left;}
+  .id-row{display:flex; justify-content:space-between; font-size:11.5px; padding:5px 0;}
+  .id-row span:first-child{color:var(--text-dim);}
+  .id-row span:last-child{color:var(--text); font-weight:500;}
+  @media (max-width:820px){ .hero-top{grid-template-columns:1fr;} .id-card{max-width:280px; margin:0 auto;} }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--teal);
+    display:flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 4px rgba(53,199,176,0.18); flex:none;}
+  .hero h1{font-size:clamp(34px,5vw,56px); line-height:1.06; max-width:820px;}
+  .hero h1 .accent{color:var(--teal);}
+  .hero p.lede{
+    color:var(--text-muted); font-size:17px; max-width:560px; margin:22px 0 30px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-bottom:52px;}
+
+  /* KPI strip — signature element, real numbers from the two projects */
+  .kpi-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--grid-line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .kpi{
+    padding:22px 20px;
+    border-right:1px solid var(--grid-line);
+    position:relative;
+  }
+  .kpi:last-child{border-right:none;}
+  .kpi .ref{font-family:'JetBrains Mono', monospace; font-size:10.5px; color:var(--text-dim); display:block; margin-bottom:12px;}
+  .kpi .val{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:26px; color:var(--text); display:block;}
+  .kpi .val .unit{font-size:14px; color:var(--text-muted); margin-left:2px;}
+  .kpi .lbl{display:block; margin-top:6px; font-size:12.5px; color:var(--text-muted);}
+  .kpi .spark{margin-top:14px; width:100%; height:24px; display:block;}
+  .kpi .spark path{fill:none; stroke:var(--teal); stroke-width:1.6;}
+  .kpi.amber .val{color:var(--amber);}
+  .kpi.amber .spark path{stroke:var(--amber);}
+  @media (max-width:760px){ .kpi-strip{grid-template-columns:repeat(2,1fr);} .kpi:nth-child(2){border-right:none;} }
+
+  /* ---------- SECTION shell ---------- */
+  section{padding:76px 0;}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-head .ref{font-family:'JetBrains Mono', monospace; color:var(--teal); font-size:13px;}
+  .section-head h2{font-size:26px;}
+  .section-head .rule{flex:1; height:1px; background:var(--grid-line);}
+  .section-sub{color:var(--text-muted); font-size:15px; max-width:560px; margin:-22px 0 34px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:start;}
+  .about-grid p{color:var(--text-muted); font-size:15.5px; margin:0 0 16px;}
+  .about-grid p strong{color:var(--text); font-weight:600;}
+  .facts{border:1px solid var(--grid-line); border-radius:var(--radius); background:var(--surface); overflow:hidden;}
+  .facts .row{display:flex; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--grid-line); font-size:13.5px;}
+  .facts .row:last-child{border-bottom:none;}
+  .facts .row span:first-child{color:var(--text-dim); font-family:'JetBrains Mono', monospace; font-size:12px;}
+  .facts .row span:last-child{color:var(--text); font-weight:500; text-align:right;}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* ---------- STACK ---------- */
+  .stack-groups{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .stack-card{border:1px solid var(--grid-line); border-radius:var(--radius); padding:22px; background:var(--surface);}
+  .stack-card .ref{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--text-dim); display:block; margin-bottom:6px;}
+  .stack-card h3{font-size:16px; margin-bottom:16px; font-weight:600;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-muted);
+    border:1px solid var(--grid-line); border-radius:6px; padding:6px 10px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .stack-card:hover .chip{border-color:var(--grid-line);}
+  .chip:hover{border-color:var(--teal); color:var(--teal);}
+  @media (max-width:820px){ .stack-groups{grid-template-columns:1fr;} }
+
+  /* ---------- PROJECTS ---------- */
+  .project{
+    border:1px solid var(--grid-line); border-radius:var(--radius);
+    background:var(--surface);
+    margin-bottom:26px;
+    overflow:hidden;
+    display:grid; grid-template-columns:1fr 1fr;
+  }
+  .project .shot{
+    background:var(--surface-alt); border-right:1px solid var(--grid-line);
+    display:flex; align-items:center; justify-content:center; min-height:260px;
+    position:relative; overflow:hidden;
+  }
+  .project .shot img{width:100%; height:100%; object-fit:cover; display:block; opacity:0.94;}
+  .project .body{padding:30px 32px;}
+  .project .kicker{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--teal); margin-bottom:10px; display:block;}
+  .project h3{font-size:21px; margin-bottom:12px;}
+  .project p.desc{color:var(--text-muted); font-size:14.5px; margin:0 0 18px;}
+  .project .metrics{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px;}
+  .project .metric{border:1px solid var(--grid-line-soft); border-radius:7px; padding:10px 12px;}
+  .project .metric .n{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:16px; color:var(--text);}
+  .project .metric .t{font-size:11.5px; color:var(--text-dim); margin-top:2px;}
+  .project .tags{display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px;}
+  .tag{font-family:'JetBrains Mono', monospace; font-size:11px; color:var(--text-muted); background:var(--surface-alt); border:1px solid var(--grid-line); padding:4px 9px; border-radius:5px;}
+  .project .links{display:flex; gap:10px;}
+  .project .links a{font-size:13px; font-weight:600; text-decoration:none; display:inline-flex; align-items:center; gap:6px; color:var(--text);}
+  .project .links a:hover{color:var(--teal);}
+  @media (max-width:820px){ .project{grid-template-columns:1fr;} .project .shot{border-right:none; border-bottom:1px solid var(--grid-line); min-height:180px;} }
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    border:1px solid var(--grid-line); border-radius:14px; background:var(--surface);
+    padding:52px 44px; text-align:center; position:relative; overflow:hidden;
+  }
+  .contact-card::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(560px 220px at 50% -20%, rgba(53,199,176,0.14), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-card h2{font-size:30px; margin-bottom:12px;}
+  .contact-card p{color:var(--text-muted); font-size:15.5px; max-width:460px; margin:0 auto 28px;}
+  .contact-actions{display:flex; justify-content:center; gap:14px; flex-wrap:wrap;}
+
+  footer{border-top:1px solid var(--grid-line); padding:26px 0; margin-top:20px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  footer .mono{font-size:11.5px; color:var(--text-dim);}
+
+  /* scroll reveal */
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo">MO<span>.</span>data</div>
+    <nav class="links">
+      <a href="#about"><span class="cell">A1</span>Perfil</a>
+      <a href="#experiencia"><span class="cell">B1</span>Experiencia</a>
+      <a href="#stack"><span class="cell">C1</span>Stack</a>
+      <a href="#proyectos"><span class="cell">D1</span>Proyectos</a>
+      <a href="#contacto"><span class="cell">E1</span>Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="assets/docs/Matias-Ortega-CV.pdf" download>Descargar CV</a>
+      <a class="btn btn-ghost" href="https://github.com/matiasortega1" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-primary" href="https://www.linkedin.com/in/matias-daniel-ortega/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow mono">DISPONIBILIDAD INMEDIATA · BUENOS AIRES, AR</div>
+        <h1>10 años entendiendo negocios,<br>ahora traducidos en <span class="accent">datos.</span></h1>
+        <p class="lede">Matías Ortega — Data Analyst / Business Analyst con base en Supply Chain Analytics. Más de 10 años analizando datos operativos, financieros y comerciales con SAP y Excel Avanzado, hoy aplicados a proyectos end-to-end en SQL, Power BI y Power Query.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-ghost" href="mailto:matiasdanielortega1@gmail.com">Contactar</a>
+        </div>
+      </div>
+      <div class="id-card">
+        <img class="id-photo" src="assets/images/foto-perfil.png" alt="Foto de Matías Ortega">
+        <div class="id-name">Matías Ortega</div>
+        <div class="id-role mono">Data Analyst · Business Analyst</div>
+        <div class="id-rows mono">
+          <div class="id-row"><span>Ubicación</span><span>Buenos Aires, AR</span></div>
+          <div class="id-row"><span>Experiencia</span><span>+10 años</span></div>
+          <div class="id-row"><span>Disponibilidad</span><span>Inmediata</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kpi-strip">
+      <div class="kpi reveal">
+        <span class="ref mono">A1 · superstore</span>
+        <span class="val mono" data-count="9800">0<span class="unit">registros</span></span>
+        <span class="lbl">Transacciones auditadas y limpiadas (2015–2018)</span>
+        <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,18 L15,14 L30,16 L45,9 L60,11 L75,4 L90,6 L100,2"/></svg>
+      </div>
+      <div class="kpi reveal">
+        <span class="ref mono">B1 · superstore</span>
+        <span class="val mono">$1,98<span class="unit">M ventas</span></span>
+        <span class="lbl">Facturación total modelada en el dashboard ejecutivo</span>
+        <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,20 L15,17 L30,12 L45,14 L60,8 L75,9 L90,3 L100,5"/></svg>
+      </div>
+      <div class="kpi reveal">
+        <span class="ref mono">C1 · e-commerce</span>
+        <span class="val mono" data-count="3000">0<span class="unit">órdenes</span></span>
+        <span class="lbl">Órdenes modeladas en esquema estrella (4 tablas)</span>
+        <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,10 L15,15 L30,8 L45,18 L60,12 L75,16 L90,7 L100,10"/></svg>
+      </div>
+      <div class="kpi amber reveal">
+        <span class="ref mono">D1 · e-commerce</span>
+        <span class="val mono">8,37<span class="unit">% devol.</span></span>
+        <span class="lbl">Tasa global de devoluciones detectada y explicada</span>
+        <svg class="spark" viewBox="0 0 100 24" preserveAspectRatio="none"><path d="M0,6 L15,10 L30,7 L45,13 L60,9 L75,15 L90,11 L100,14"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="wrap">
+    <div class="section-head reveal"><span class="ref mono">A1</span><h2>Perfil</h2><span class="rule"></span></div>
+    <div class="about-grid reveal">
+      <div>
+        <p>Profesional con <strong>más de 10 años de experiencia</strong> analizando datos operativos, financieros y comerciales en entornos de Supply Chain y Comercio Internacional. Amplia trayectoria transformando datos en reportes de gestión, KPIs e indicadores de negocio mediante <strong>SAP</strong> y <strong>Excel Avanzado</strong>.</p>
+        <p>Actualmente en transición hacia <strong>Data Analytics</strong>, desarrollando proyectos end-to-end que combinan modelado relacional en SQL, procesos ETL con Power Query y dashboards interactivos en Power BI con medidas DAX.</p>
+        <p>Diferencial clave: sólido contexto de negocio que permite identificar <strong>qué preguntar a los datos</strong>, no solo cómo procesarlos.</p>
+      </div>
+      <div class="facts">
+        <div class="row"><span>ROL</span><span>Data Analyst / Business Analyst</span></div>
+        <div class="row"><span>UBICACIÓN</span><span>Palermo, CABA, Argentina</span></div>
+        <div class="row"><span>EXPERIENCIA</span><span>+10 años (Supply Chain / SAP)</span></div>
+        <div class="row"><span>STACK BI</span><span>Power BI · DAX · Power Query</span></div>
+        <div class="row"><span>DATOS</span><span>SQL · Python · Pandas</span></div>
+        <div class="row"><span>IDIOMAS</span><span>Español (nativo) · Inglés (intermedio)</span></div>
+        <div class="row"><span>DISPONIBILIDAD</span><span>Inmediata</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia" class="wrap">
+    <div class="section-head reveal"><span class="ref mono">B1</span><h2>Experiencia</h2><span class="rule"></span></div>
+
+    <article class="project reveal" style="grid-template-columns:1fr;">
+      <div class="body">
+        <span class="kicker">MARZO 2022 — JUNIO 2026 · 4 AÑOS 3 MESES</span>
+        <h3>Analista de Supply Chain — AMPM Global SRL</h3>
+        <p class="desc">Análisis de información operativa y financiera de +800 operaciones anuales en SAP, definición de KPIs operativos y centralización de facturación para 3 gerencias.</p>
+        <div class="metrics" style="grid-template-columns:repeat(4,1fr);">
+          <div class="metric"><div class="n">+800</div><div class="t">Operaciones anuales en SAP</div></div>
+          <div class="metric"><div class="n">2d → 4h</div><div class="t">Tiempo de consolidación</div></div>
+          <div class="metric"><div class="n">-10h/sem</div><div class="t">Automatización con Power Query</div></div>
+          <div class="metric"><div class="n">-30%</div><div class="t">Errores de carga</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">SAP</span><span class="tag">Excel Avanzado</span><span class="tag">Power Query</span><span class="tag">KPIs</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal" style="grid-template-columns:1fr;">
+      <div class="body">
+        <span class="kicker">JUNIO 2017 — NOVIEMBRE 2021 · 4 AÑOS 5 MESES</span>
+        <h3>Analista de Comercio Internacional — H.B. Fuller Argentina</h3>
+        <p class="desc">Gestión y análisis de +200 operaciones anuales de exportación e importación en SAP (MM/SD), con foco en control documental y costos logísticos para 3 gerencias.</p>
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr);">
+          <div class="metric"><div class="n">+2.000</div><div class="t">Registros en SAP, 99% precisión</div></div>
+          <div class="metric"><div class="n">USD 2.000</div><div class="t">Diferencias detectadas / mes</div></div>
+          <div class="metric"><div class="n">+200</div><div class="t">Operaciones anuales export/import</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">SAP MM/SD</span><span class="tag">Comercio Internacional</span><span class="tag">Logística</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="facts reveal" style="margin-top:26px;">
+      <div class="row"><span>EDUCACIÓN</span><span>Universidad Nacional de Luján (2013–2017)</span></div>
+      <div class="row"><span>FORMACIÓN BI</span><span>Experto en Análisis y Visualización de Datos — Udemy (en curso)</span></div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="wrap">
+    <div class="section-head reveal"><span class="ref mono">C1</span><h2>Stack técnico</h2><span class="rule"></span></div>
+    <div class="stack-groups reveal">
+      <div class="stack-card">
+        <span class="ref">B1</span>
+        <h3>Modelado & BI</h3>
+        <div class="chips">
+          <span class="chip">Power BI</span>
+          <span class="chip">DAX</span>
+          <span class="chip">Power Query (M)</span>
+          <span class="chip">Modelo relacional</span>
+          <span class="chip">KPIs & Métricas</span>
+          <span class="chip">Visualización de datos</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <span class="ref">B2</span>
+        <h3>Datos & Análisis</h3>
+        <div class="chips">
+          <span class="chip">SQL</span>
+          <span class="chip">Python</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">EDA</span>
+          <span class="chip">Dashboards interactivos</span>
+        </div>
+      </div>
+      <div class="stack-card">
+        <span class="ref">B3</span>
+        <h3>Negocio & Herramientas</h3>
+        <div class="chips">
+          <span class="chip">SAP (MM/SD/FI)</span>
+          <span class="chip">Excel Avanzado</span>
+          <span class="chip">Tablas Dinámicas</span>
+          <span class="chip">Supply Chain</span>
+          <span class="chip">Comercio Internacional</span>
+          <span class="chip">Facturación</span>
+          <span class="chip">Conciliaciones</span>
+          <span class="chip">Google Workspace</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="proyectos" class="wrap">
+    <div class="section-head reveal"><span class="ref mono">D1</span><h2>Proyectos</h2><span class="rule"></span></div>
+    <p class="section-sub reveal">Dos análisis end-to-end: desde el dataset crudo hasta el dashboard ejecutivo en Power BI.</p>
+
+    <article class="project reveal">
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/matiasortega1/superstore-sales-analytics/main/dashboard/dashboard_preview.png" alt="Dashboard ejecutivo Superstore Sales en Power BI" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;ref mono&quot; style=&quot;color:var(--text-dim)&quot;>preview no disponible</span>'">
+      </div>
+      <div class="body">
+        <span class="kicker">CASO 01 · RETAIL</span>
+        <h3>Superstore Sales — Analítica comercial end-to-end</h3>
+        <p class="desc">9.800 transacciones (2015–2018) con datos regionales inconsistentes. Auditoría en Excel, modelado en SQL, ETL avanzado en Power Query para resolver un bug de formato numérico, y dashboard ejecutivo final en Power BI.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">$1,98M</div><div class="t">Ventas totales</div></div>
+          <div class="metric"><div class="n">4.922</div><div class="t">Órdenes únicas</div></div>
+          <div class="metric"><div class="n">$402,60</div><div class="t">Ticket promedio</div></div>
+          <div class="metric"><div class="n">30,4%</div><div class="t">Ventas región West</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">SQL</span><span class="tag">Power Query M</span><span class="tag">DAX</span><span class="tag">Power BI</span><span class="tag">Excel</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/matiasortega1/superstore-sales-analytics" target="_blank" rel="noopener">Ver repositorio →</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project reveal">
+      <div class="shot">
+        <img src="https://raw.githubusercontent.com/matiasortega1/Ecommerce-Analytics-Project/main/dashboard/screenshots/01_resumen_ejecutivo.png" alt="Dashboard resumen ejecutivo del proyecto de e-commerce" loading="lazy" onerror="this.parentElement.innerHTML='<span class=&quot;ref mono&quot; style=&quot;color:var(--text-dim)&quot;>preview no disponible</span>'">
+      </div>
+      <div class="body">
+        <span class="kicker">CASO 02 · E-COMMERCE</span>
+        <h3>Ingresos, devoluciones y segmentación de clientes</h3>
+        <p class="desc">Dataset sintético de e-commerce (500 clientes, 3.000 órdenes) con esquema en estrella en SQLite. Dashboard de 3 páginas en Power BI y un modelo de regresión logística para predecir devoluciones.</p>
+        <div class="metrics">
+          <div class="metric"><div class="n">$1,70M</div><div class="t">Ingresos totales</div></div>
+          <div class="metric"><div class="n">462</div><div class="t">Clientes activos</div></div>
+          <div class="metric"><div class="n">8,37%</div><div class="t">Tasa de devolución</div></div>
+          <div class="metric"><div class="n">0.59</div><div class="t">AUC-ROC del modelo</div></div>
+        </div>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">SQL</span><span class="tag">DAX</span><span class="tag">Power BI</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/matiasortega1/Ecommerce-Analytics-Project" target="_blank" rel="noopener">Ver repositorio →</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contacto" class="wrap">
+    <div class="contact-card reveal">
+      <span class="eyebrow mono" style="justify-content:center;">E1 · CONTACTO</span>
+      <h2>Charlemos sobre tu próxima oportunidad.</h2>
+      <p>Disponible de forma inmediata para posiciones de Data Analyst, Business Analyst o roles que combinen negocio y herramientas de datos. Palermo, CABA — abierto a remoto/híbrido.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:matiasdanielortega1@gmail.com">matiasdanielortega1@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+541157939954">+54 11 5793-9954</a>
+        <a class="btn btn-ghost" href="assets/docs/Matias-Ortega-CV.pdf" download>Descargar CV</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/matias-daniel-ortega/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/matiasortega1" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">© 2026 Matías Ortega — Data Analytics</span>
+    <span class="mono">built with SQL, Power BI & un poco de HTML</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // KPI count-up (only for numeric data-count values)
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    const target = parseInt(el.getAttribute('data-count'),10);
+    const unitEl = el.querySelector('.unit');
+    const unitHTML = unitEl ? unitEl.outerHTML : '';
+    let started = false;
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting && !started){
+          started = true;
+          const dur = 900, start = performance.now();
+          function tick(now){
+            const p = Math.min(1, (now-start)/dur);
+            const eased = 1 - Math.pow(1-p, 3);
+            const val = Math.round(target*eased);
+            el.innerHTML = val.toLocaleString('es-AR') + unitHTML;
+            if(p<1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          obs.unobserve(el);
+        }
+      });
+    }, {threshold:0.4});
+    obs.observe(el);
+  });
+</script>
+
+</body>
+</html>
