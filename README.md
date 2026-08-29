@@ -7,6 +7,8 @@
 
 Sitio personal de portfolio, publicado con **GitHub Pages** en [matiasortega1.github.io](https://matiasortega1.github.io/). Reúne mi perfil profesional, experiencia laboral, stack técnico y los proyectos de análisis de datos de este perfil de GitHub, con acceso directo a mi CV en PDF.
 
+[![Preview](https://raw.githubusercontent.com/matiasortega1/matiasortega1.github.io/main/assets/images/foto-perfil.png)](https://matiasortega1.github.io/)
+
 ---
 
 ## 📌 Tabla de Contenidos
@@ -24,11 +26,11 @@ Sitio personal de portfolio, publicado con **GitHub Pages** en [matiasortega1.gi
 
 ## 📝 Descripción General
 
-Este repositorio contiene el código fuente de mi portfolio personal como **Data Analyst / Business Analyst**, con foco en Supply Chain Analytics. Es un sitio estático de una sola página (*single-page*), sin frameworks ni dependencias de build: estructurado bajo buenas prácticas de modularización (HTML, CSS y JS en archivos desacoplados), diseñado para ser ultra liviano, accesible y fácil de mantener.
+Este repositorio contiene el código fuente de mi portfolio personal como **Data Analyst Jr.** Es un sitio estático de una sola página (*single-page*), sin frameworks ni dependencias de build: estructurado bajo buenas prácticas de modularización (HTML, CSS y JS en archivos desacoplados), diseñado para ser ultra liviano, accesible y fácil de mantener.
 
 El objetivo del sitio es doble:
 
-- Presentar mi **perfil profesional** y trayectoria de +10 años en Supply Chain / SAP en transición hacia Data Analytics.
+- Presentar mi **perfil profesional** de Data Analyst Jr., respaldado por un background de más de 10 años en administración, gestión y Supply Chain, destacando la capacidad de traducción de datos de negocio a decisiones analíticas.
 - Mostrar mis **proyectos de análisis de datos** ([`superstore-sales-analytics`](https://github.com/matiasortega1/superstore-sales-analytics) y [`Ecommerce-Analytics-Project`](https://github.com/matiasortega1/Ecommerce-Analytics-Project)) con sus métricas clave, capturas de los dashboards y enlaces a sus respectivos repositorios.
 
 ---
