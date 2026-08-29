@@ -26,80 +26,104 @@ Sitio personal de portfolio, publicado con **GitHub Pages** en [matiasortega1.gi
 
 ## 📝 Descripción General
 
-Este repositorio contiene el código fuente de mi portfolio personal como **Data Analyst / Business Analyst**, con foco en Supply Chain Analytics. Es un sitio estático de una sola página (*single-page*), sin frameworks ni dependencias de build: HTML, CSS y JavaScript vanilla en un único archivo, pensado para cargar rápido y ser fácil de mantener.
+Este repositorio contiene el código fuente de mi portfolio personal como **Data Analyst / Business Analyst**, con foco en Supply Chain Analytics. Es un sitio estático de una sola página (*single-page*), sin frameworks ni dependencias de build: estructurado bajo buenas prácticas de modularización (HTML, CSS y JS en archivos desacoplados), diseñado para ser ultra liviano, accesible y fácil de mantener.
 
 El objetivo del sitio es doble:
 
 - Presentar mi **perfil profesional** y trayectoria de +10 años en Supply Chain / SAP en transición hacia Data Analytics.
-- Mostrar mis **proyectos de análisis de datos** ([`superstore-sales-analytics`](https://github.com/matiasortega1/superstore-sales-analytics) y [`Ecommerce-Analytics-Project`](https://github.com/matiasortega1/Ecommerce-Analytics-Project)) con sus métricas clave y capturas de los dashboards en Power BI.
+- Mostrar mis **proyectos de análisis de datos** ([`superstore-sales-analytics`](https://github.com/matiasortega1/superstore-sales-analytics) y [`Ecommerce-Analytics-Project`](https://github.com/matiasortega1/Ecommerce-Analytics-Project)) con sus métricas clave, capturas de los dashboards y enlaces a sus respectivos repositorios.
+
+---
 
 ## 🛠️ Stack Técnico
 
 | Herramienta | Uso |
 |---|---|
-| **HTML5** | Estructura semántica de la página (single-file) |
-| **CSS3** | Diseño (grid, variables CSS, animaciones), sin frameworks |
-| **JavaScript (vanilla)** | Scroll-reveal con `IntersectionObserver` y animación de conteo en los KPIs |
-| **Google Fonts** | Space Grotesk (títulos), Inter (texto), JetBrains Mono (datos) |
-| **GitHub Pages** | Hosting y despliegue continuo desde la rama `main` |
+| **HTML5** | Estructura semántica completa (etiquetas semánticas, `<dl>` para KPIs y mejoras de accesibilidad ARIA). |
+| **CSS3** | Diseño responsive (Flexbox, CSS Grid, variables CSS, transiciones sutiles de hover y optimización móvil), desacoplado en `style.css`. |
+| **JavaScript (vanilla)** | Animación fluida de contadores de KPIs y control del menú colapsable responsive, desacoplado en `main.js`. |
+| **Google Fonts** | `Sora` (títulos y logos) e `Inter` (cuerpo de texto y datos). |
+| **GitHub Pages** | Servidor de hosting y despliegue continuo (CI/CD) automático desde la rama `main`. |
+
+---
 
 ## 📂 Estructura del Repositorio
 
 ```
 matiasortega1.github.io/
 │
-├── index.html                       # Página completa (HTML + CSS + JS)
+├── index.html                       # Estructura semántica principal (HTML5)
+├── favicon.svg                      # Favicon vectorizado (SVG)
+├── .gitignore                       # Filtro de archivos innecesarios para el repositorio
+├── README.md                        # Este archivo
 │
-├── assets/
-│   ├── images/
-│   │   └── foto-perfil.png          # Foto de perfil usada en el hero
-│   └── docs/
-│       └── Matias-Ortega-CV.pdf     # CV descargable desde el botón "Descargar CV"
-│
-└── README.md                        # Este archivo
+└── assets/
+    ├── css/
+    │   └── style.css                # Estilos globales, variables de diseño y responsive
+    ├── js/
+    │   └── main.js                  # Animaciones de KPIs y comportamiento interactivo
+    ├── docs/
+    │   └── Matias-Ortega-CV.pdf     # CV descargable
+    └── images/
+        ├── foto-perfil.png          # Foto de perfil principal
+        └── projects/
+            ├── superstore-dashboard.png  # Previsualización local del dashboard comercial
+            └── ecommerce-dashboard.png   # Previsualización local del dashboard de e-commerce
 ```
+
+---
 
 ## 📄 Contenido de la Página
 
 | Sección | Descripción |
 |---|---|
-| **Perfil** | Extracto profesional y datos clave (rol, ubicación, experiencia, idiomas) |
-| **Experiencia** | Trayectoria en AMPM Global SRL y H.B. Fuller Argentina, con logros cuantificados |
-| **Stack técnico** | Herramientas agrupadas en Modelado & BI / Datos & Análisis / Negocio & Herramientas |
-| **Proyectos** | Casos de estudio de `superstore-sales-analytics` y `Ecommerce-Analytics-Project` |
-| **Contacto** | Email, teléfono, botón de descarga de CV, LinkedIn y GitHub |
+| **Perfil** | Extracto profesional y datos clave de negocio (rol, ubicación, experiencia, idiomas y stack BI). |
+| **Experiencia** | Trayectoria profesional en AMPM Global SRL y H.B. Fuller Argentina, destacando métricas de impacto y automatizaciones logradas. |
+| **Stack técnico** | Herramientas agrupadas por especialidad (Modelado & BI, Datos & Análisis, Negocio & Herramientas). |
+| **Proyectos** | Fichas técnicas de los proyectos principales con métricas reales, fallbacks sin JavaScript e imágenes locales optimizadas. |
+| **Contacto** | Formas de contacto directas (Email, teléfono, descarga de CV, LinkedIn y GitHub). |
+
+---
 
 ## 🚀 Cómo Correrlo en Local
 
-No requiere instalación ni build. Alcanza con abrir el archivo directamente:
+El proyecto está listo para ejecutarse sin necesidad de instalar dependencias de Node.js o procesos de compilación. Simplemente clona e inicia:
 
 ```bash
 git clone https://github.com/matiasortega1/matiasortega1.github.io.git
 cd matiasortega1.github.io
 ```
 
-Luego abrí `index.html` en el navegador (doble clic, o clic derecho → "Abrir con"). Opcionalmente, para servirlo en un servidor local:
+Luego puedes abrir `index.html` directamente en tu navegador (doble clic) o iniciarlo con un servidor local básico:
 
 ```bash
-python3 -m http.server 8000
-# → http://localhost:8000
+python -m http.server 8000
+# Abrir en: http://localhost:8000
 ```
+
+---
 
 ## 🌐 Despliegue (GitHub Pages)
 
-El sitio se publica automáticamente desde la rama `main` de este repositorio vía **GitHub Pages** (Settings → Pages → Deploy from a branch → `main` / `root`). Al estar el repositorio nombrado `matiasortega1.github.io`, GitHub lo sirve directamente en la raíz del dominio: **https://matiasortega1.github.io/**
+El despliegue está configurado para ejecutarse automáticamente en cada actualización de la rama `main` (Settings → Pages → Source: Deploy from a branch). 
 
-## 🔄 Actualizar el Sitio
+Dado que el repositorio lleva el nombre exacto de la cuenta de usuario (`matiasortega1.github.io`), GitHub lo sirve directamente en la raíz de su dominio: **[https://matiasortega1.github.io/](https://matiasortega1.github.io/)**
 
-Cualquier cambio (texto, foto, CV) se sube con un commit normal a `main`:
+---
+
+## 🔄 Sincronización y Actualizaciones
+
+Cualquier edición o mejora en los archivos del portafolio se sube al repositorio con comandos de Git estándar:
 
 ```bash
 git add .
-git commit -m "Actualizo CV y sección de experiencia"
-git push
+git commit -m "docs: actualiza secciones del portafolio"
+git push origin main
 ```
 
-GitHub Pages redepliega automáticamente en 1-3 minutos.
+En aproximadamente 1 o 2 minutos, GitHub Pages completará la compilación del sitio web actualizando la versión online automáticamente.
+
+---
 
 ## ✉️ Contacto
 
