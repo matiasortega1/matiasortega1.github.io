@@ -7,8 +7,6 @@
 
 Sitio personal de portfolio, publicado con **GitHub Pages** en [matiasortega1.github.io](https://matiasortega1.github.io/). Reúne mi perfil profesional, experiencia laboral, stack técnico y los proyectos de análisis de datos de este perfil de GitHub, con acceso directo a mi CV en PDF.
 
-[![Preview](https://raw.githubusercontent.com/matiasortega1/matiasortega1.github.io/main/assets/images/foto-perfil.png)](https://matiasortega1.github.io/)
-
 ---
 
 ## 📌 Tabla de Contenidos
